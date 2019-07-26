@@ -73,7 +73,7 @@
                   echo "<td>".$res['account_name']."</td>";
                   echo "<td>".$res['account_type']."</td>";
                   echo "<td>".$res['b_name']."</td>";
-                  echo "<td>"."<a class='btn-floating teal' href='editAccount.php?id=".$res['id']."'><i class='material-icons'>update</i></a>"."
+                  echo "<td>"."<a class='btn-floating green darken-4' href='editAccount.php?id=".$res['id']."'><i class='material-icons'>create</i></a>"."
                                 <a class='btn-floating red darken-1' href='deleteAccount.php?id=".$res['id']."'><i class='material-icons'>delete_forever</i></a>
                                 </td>";
                   echo "</tr>";

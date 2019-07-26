@@ -13,7 +13,7 @@
 
     <nav id="navbarMaterialize" class=" blue-grey darken-3">
         <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">Add Bank Info</a>
+        <a href="#" class="brand-logo center">Edit Bank Info</a>
             <a href="#" class="sidenav-trigger" data-target="mobile-nav"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down ">
                 <li>
@@ -41,63 +41,69 @@
 
 
     <main>
+
+    <?php
+	include_once ('./Crud.php');
+	
+	$crud = new crud();
+	
+	$id = $_GET['id'];
+	
+	$query = "select * from account_info where id=$id";
+	
+	$result = $crud->getData($query);
+	
+	foreach($result as $res){
+		$id = $res['id'];
+        $anumber = $res['account_number'];
+        $aname = $res['account_name'];
+        $atype = $res['account_type'];
+        $bname = $res['b_name'];
+	}
+?>
+
+
+
+
         <br><br><br><br>
         <div class="container">
             <div class="row">
-                <form action="AddAccountInfo.php" method="POST" class="col s12">
+                <form action="Update.php" method="POST" class="col s12">
+                <div class="row">
+                        <div class="input-field col s12">
+                            <input name="id" type="text" class="validate" hidden value="<?php echo $id; ?>">
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input name="anumber" type="text" class="validate">
+                            <input name="anumber" type="text" class="validate"  value="<?php echo $anumber; ?>">
                             <label>Account Number</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input name="aname" type="text" class="validate">
+                            <input name="aname" type="text" class="validate" value="<?php echo $aname; ?>">
                             <label>Account Name</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input name="atype" type="text" class="validate">
+                            <input name="atype" type="text" class="validate" value="<?php echo $atype; ?>">
                             <label>Account Type</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input name="bname" type="text" class="validate">
+                            <input name="bname" type="text" class="validate" value="<?php echo $bname; ?>">
                             <label>Bank Name</label>
                         </div>
                     </div>
                     <div class="row">
-                        <p class="center-align"><input type="submit" name="submit" class="btn  blue-grey darken-3 round z-depth-3" value="Submit"></p>
+                        <p class="center-align"><input type="submit" name="update" class="btn  blue-grey darken-3 round z-depth-3" value="Submit"></p>
                     </div>
                 </form>
             </div>
         </div>
-
-        <?php
-
-        include_once ('./Crud.php');
-
-        $crud = new Crud();
-
-        if(isset($_POST['submit'])){
-            $anumber = $_POST['anumber'];
-            $aname = $_POST['aname'];
-            $atype = $_POST['atype'];
-            $bname = $_POST['bname'];
-
-            $result = $crud->execute("insert into account_info (account_number, account_name, account_type, b_name) values ('$anumber', '$aname', '$atype', '$bname')");
-
-            if($result){
-                header("Location:ViewAccountInfo.php");
-            }
-            else{
-                echo "bad";
-            }
-        }
-        ?>
 
     </main>
 
