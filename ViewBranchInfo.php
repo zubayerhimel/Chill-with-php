@@ -13,18 +13,18 @@
 
     <nav id="navbarMaterialize" class=" blue-grey darken-3">
         <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">Add Bank Info</a>
+        <a href="#" class="brand-logo center">Branch Info</a>
             <a href="#" class="sidenav-trigger" data-target="mobile-nav"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down ">
-                <li>
+            <li>
                     <a class="tooltipped" data-position="bottom" data-tooltip="GitHub" target="_blank"
                         href="https://github.com/zubayerhimel/Chill-with-php"></a>
                 </li>
 
                 <li><a href="AddAccountInfo.php">Add account</a>
                 </li>
+                <li><a href="AddBranch.php"> Add branch info</a></li>
                 <li><a href="ViewAccountInfo.php"> View account info</a></li>
-                <li><a href="ViewBranchInfo.php"> View bank info</a></li>
             </ul>
         </div>
     </nav>
@@ -34,56 +34,54 @@
             <a class="tooltipped" data-position="bottom" data-tooltip="GitHub" target="_blank"
                 href="https://github.com/zubayerhimel/Chill-with-php"></a>
         </li>
-        <li><a href="AddAccountInfo.php">Add account</a></li>
+
+        <li><a href="AddAccountInfo.php">Add account</a>
+        </li>
+        <li><a href="AddBranch.php"> Add branch info</a></li>
         <li><a href="ViewAccountInfo.php"> View account info</a></li>
-        <li><a href="#"> View bank info</a></li>
     </ul>
 
 
     <main>
         <br><br><br><br>
-        <div class="container">
-            <div class="row">
-                <form action="AddBranch.php" method="POST" class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input name="bname" type="text" class="validate">
-                            <label>Bank Name</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input name="blocation" type="text" class="validate">
-                            <label>Bank location</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <p class="center-align"><input type="submit" name="submit" class="btn  blue-grey darken-3 round z-depth-3" value="Submit"></p>
-                    </div>
-                </form>
-            </div>
-        </div>
-
         <?php
 
-        include_once ('./Crud.php');
+            include_once ('./Crud.php');
+            $crud = new Crud();
 
-        $crud = new Crud();
+            $query = "select * from bank_info";
+            $result = $crud->getData($query);
+        ?>
+        <div class="container">
+        <table class="responsive-table">
+        <thead>
+          <tr>
+              <th>Bank Id</th>
+              <th>Bank Name</th>
+              <th>Bank Location</th>
+          </tr>
+        </thead>
 
-        if(isset($_POST['submit'])){
-            $bname = $_POST['bname'];
-            $blocation = $_POST['blocation'];
-
-            $result = $crud->execute("insert into bank_info (bank_name, bank_location) values ('$bname', '$blocation')");
-
-            if($result){
-                header("Location:ViewBranchInfo.php");
-            }
-            else{
-                echo "bad";
-            }
+        <tbody>
+             <?php
+              foreach($result as $key=>$res){
+                  try {
+                  echo "<tr>";
+                  echo "<td>".$res['id']."</td>";
+                  echo "<td>".$res['bank_name']."</td>";
+                  echo "<td>".$res['bank_location']."</td>";
+                  echo "</tr>";
+                } 
+              catch (Exception $e) {
+               //throw $th;
+               echo "No data";
+             }   
         }
         ?>
+        </tbody>
+      </table>
+            
+        </div>
 
     </main>
 

@@ -34,9 +34,9 @@
             <a class="tooltipped" data-position="bottom" data-tooltip="GitHub" target="_blank"
                 href="https://github.com/zubayerhimel/Chill-with-php"></a>
         </li>
-        <li><a href="AddAccountInfo.php">Add account</a></li>
+        <li><a href="AddBranch.php">Add bank</a></li>
         <li><a href="ViewAccountInfo.php"> View account info</a></li>
-        <li><a href="#"> View bank info</a></li>
+        <li><a href="ViewBranchInfo.php"> View bank info</a></li>
     </ul>
 
 
@@ -44,17 +44,29 @@
         <br><br><br><br>
         <div class="container">
             <div class="row">
-                <form action="AddBranch.php" method="POST" class="col s12">
+                <form action="AddAccountInfo.php" method="POST" class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input name="bname" type="text" class="validate">
-                            <label>Bank Name</label>
+                            <input name="anumber" type="text" class="validate">
+                            <label>Account Number</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input name="blocation" type="text" class="validate">
-                            <label>Bank location</label>
+                            <input name="aname" type="text" class="validate">
+                            <label>Account Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="atype" type="text" class="validate">
+                            <label>Account Type</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="b_name" type="text" class="validate">
+                            <label>Bank Name</label>
                         </div>
                     </div>
                     <div class="row">
@@ -71,13 +83,15 @@
         $crud = new Crud();
 
         if(isset($_POST['submit'])){
-            $bname = $_POST['bname'];
-            $blocation = $_POST['blocation'];
+            $anumber = $_POST['anumber'];
+            $aname = $_POST['aname'];
+            $atype = $_POST['atype'];
+            $b_name = $_POST['b_name'];
 
-            $result = $crud->execute("insert into bank_info (bank_name, bank_location) values ('$bname', '$blocation')");
+            $result = $crud->execute("insert into account_info (account_number, account_name, account_type, b_name) values ('$anumber', '$aname', '$atype', '$b_name')");
 
             if($result){
-                header("Location:ViewBranchInfo.php");
+                header("Location:ViewAccountInfo.php");
             }
             else{
                 echo "bad";
