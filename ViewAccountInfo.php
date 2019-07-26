@@ -18,7 +18,7 @@
             <ul class="right hide-on-med-and-down ">
             <li>
                     <a class="tooltipped" data-position="bottom" data-tooltip="GitHub" target="_blank"
-                        href="https://github.com/zubayerhimel/Chill-with-php"></a>
+                        href="https://github.com/zubayerhimel/Chill-with-php">Github</a>
                 </li>
 
                 <li><a href="AddAccountInfo.php">Add account</a>
@@ -32,7 +32,7 @@
     <ul class="sidenav" id="mobile-nav">
         <li>
             <a class="tooltipped" data-position="bottom" data-tooltip="GitHub" target="_blank"
-                href="https://github.com/zubayerhimel/Chill-with-php"></a>
+                href="https://github.com/zubayerhimel/Chill-with-php">Github</a>
         </li>
 
         <li><a href="AddAccountInfo.php">Add account</a>

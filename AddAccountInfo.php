@@ -18,7 +18,7 @@
             <ul class="right hide-on-med-and-down ">
                 <li>
                     <a class="tooltipped" data-position="bottom" data-tooltip="GitHub" target="_blank"
-                        href="https://github.com/zubayerhimel/Chill-with-php"></a>
+                        href="https://github.com/zubayerhimel/Chill-with-php">Github</a>
                 </li>
 
                 <li><a href="AddAccountInfo.php">Add account</a>
@@ -32,7 +32,7 @@
     <ul class="sidenav" id="mobile-nav">
         <li>
             <a class="tooltipped" data-position="bottom" data-tooltip="GitHub" target="_blank"
-                href="https://github.com/zubayerhimel/Chill-with-php"></a>
+                href="https://github.com/zubayerhimel/Chill-with-php">Github</a>
         </li>
         <li><a href="AddBranch.php">Add bank</a></li>
         <li><a href="ViewAccountInfo.php"> View account info</a></li>
@@ -65,8 +65,20 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input name="bname" type="text" class="validate">
-                            <label>Bank Name</label>
+                        <?php
+                            include_once ('./Crud.php');
+                            $crud = new Crud();
+                            $query = "SELECT bank_name FROM bank_info";
+                            $result = $crud->getData($query);
+                        ?>
+                            <select name="banklocation" id="">
+                                <option value="" disabled selected>Choose your option</option>
+                                <?php
+                                    // foreach($result as $key=>$res){
+                                    //     echo "<option value="<?php echo $res[0]; ?>">"<?php echo $res[1] ?>".</option>"
+                                    // }
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
