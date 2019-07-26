@@ -10,6 +10,12 @@
     </head>
 
     <body>
+      <?php
+        session_start();
+        if(!isset($_SESSION['email'])){
+          header('location:Login.php');
+        }
+      ?>
 
     <nav id="navbarMaterialize" class=" blue-grey darken-3">
         <div class="nav-wrapper">
@@ -25,6 +31,7 @@
                 </li>
                 <li><a href="AddBranch.php"> Add bank info</a></li>
                 <li><a href="ViewBranchInfo.php"> View bank info</a></li>
+                <li><a href="Logout.php"> Logout</a></li>
             </ul>
         </div>
     </nav>
@@ -39,12 +46,15 @@
         </li>
         <li><a href="AddBranch.php"> Add bank info</a></li>
         <li><a href="ViewBranchInfo.php"> View bank info</a></li>
+        <li><a href="Logout.php"> Logout</a></li>
     </ul>
 
 
     <br><br><br><br>
         <?php
-
+          if(!isset($_SESSION['email'])){
+            header('location:Login.php');
+          }
             include_once ('./Crud.php');
             $crud = new Crud();
 

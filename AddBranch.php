@@ -25,6 +25,7 @@
                 </li>
                 <li><a href="ViewAccountInfo.php"> View account info</a></li>
                 <li><a href="ViewBranchInfo.php"> View bank info</a></li>
+                <li><a href="Logout.php"> Logout</a></li>
             </ul>
         </div>
     </nav>
@@ -37,6 +38,7 @@
         <li><a href="AddAccountInfo.php">Add account</a></li>
         <li><a href="ViewAccountInfo.php"> View account info</a></li>
         <li><a href="#"> View bank info</a></li>
+        <li><a href="Logout.php"> Logout</a></li>
     </ul>
 
 
